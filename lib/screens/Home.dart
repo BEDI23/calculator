@@ -17,8 +17,38 @@ class _HomeState extends State<Home> {
       body: Column(
         children: [
           Expanded(
-              child: Container(color: Colors.red,)
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(12),
+                color: button,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('Input ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 48,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('Ouput ',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34,
+                    ),
+                  ),
+              ],
+                ),
+              )
           ),
+
+
+
           Row(
             children:[
               Button(text: 'AC',textColor: valbutt, backgroundColor: background,  ),
