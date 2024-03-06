@@ -1,4 +1,5 @@
 import 'package:calculator/contents/color.dart';
+import 'package:calculator/widgets/Button.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -20,27 +21,43 @@ class _HomeState extends State<Home> {
           ),
           Row(
             children:[
-              Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(8),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)
-                        ),
-                        primary: button,
-                        padding: EdgeInsets.all(22)
-                      ),
-                      onPressed: () {},
-                      child: Text('1',style: TextStyle(
-                        color:Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                        ),
-                      ),
-                    ),
-                  ),
-              ),
+              Button(text: 'AC',textColor: valbutt, backgroundColor: background,  ),
+              Button(text: '( )', backgroundColor: background,textColor: valbutt,),
+              Button(text: '%', backgroundColor: background,textColor: valbutt,),
+              Button(text: '/', backgroundColor: background,textColor: valbutt,),
+
+            ],
+          ), Row(
+            children:[
+              Button(text: '7', ),
+              Button(text: '8', ),
+              Button(text: '9', ),
+              Button(text: '*',backgroundColor: background,textColor: valbutt, ),
+
+            ],
+          ), Row(
+            children:[
+              Button(text: '6', ),
+              Button(text: '5', ),
+              Button(text: '4', ),
+              Button(text: '-', backgroundColor: background,textColor: valbutt,),
+
+            ],
+          ), Row(
+            children:[
+              Button(text: '1', ),
+              Button(text: '2', ),
+              Button(text: '3', ),
+              Button(text: '+',backgroundColor: background,textColor: valbutt, ),
+
+            ],
+          ), Row(
+            children:[
+              Button(text: '0', ),
+              Button(text: '.', ),
+              Button(text: 'SUP', backgroundColor: background,textColor: valbutt,),
+              Button(text: '=', backgroundColor: background,textColor: valbutt, ),
+
             ],
           ),
         ],
@@ -48,3 +65,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
+
+
+
