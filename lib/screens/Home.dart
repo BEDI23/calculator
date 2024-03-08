@@ -1,4 +1,5 @@
 import 'package:calculator/contents/color.dart';
+import 'package:calculator/models/calcul.dart';
 import 'package:calculator/widgets/Button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -25,7 +27,7 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('Input ',
+                  Text(input,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -35,7 +37,7 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 20,
                   ),
-                  Text('Ouput ',
+                  Text(output,
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.8),
                       fontWeight: FontWeight.bold,
@@ -52,7 +54,7 @@ class _HomeState extends State<Home> {
           Row(
             children:[
               Button(text: 'AC',textColor: valbutt, backgroundColor: background,  ),
-              Button(text: '( )', backgroundColor: background,textColor: valbutt,),
+              Button(text: '( ) ', backgroundColor: background,textColor: valbutt,),
               Button(text: '%', backgroundColor: background,textColor: valbutt,),
               Button(text: '/', backgroundColor: background,textColor: valbutt,),
 

@@ -1,4 +1,5 @@
 import 'package:calculator/contents/color.dart';
+import 'package:calculator/models/calcul.dart';
 import 'package:flutter/material.dart';
 
 
@@ -26,9 +27,7 @@ class Button extends StatelessWidget {
             primary: backgroundColor,
             padding: EdgeInsets.all(22.0),
           ),
-          onPressed: () {
-
-          },
+          onPressed: () => onButtonClick(text),
           child: Text(
             text,
             style: TextStyle(
@@ -37,8 +36,7 @@ class Button extends StatelessWidget {
               fontSize: 18.0,
             ),
           ),
-        ),
-      ),
+        ),      ),
     );
   }
 }
