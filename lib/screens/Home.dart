@@ -1,7 +1,7 @@
 import 'package:calculator/contents/color.dart';
-import 'package:calculator/models/calcul.dart';
-import 'package:calculator/widgets/Button.dart';
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
+
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -11,6 +11,33 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  double firstNumt=0.0;
+  double secondNum=0.0;
+
+  var input ='';
+  var output ='';
+  var operation ='';
+
+  onButtonClick(valut){
+    print(valut);
+    if(valut== "AC"){
+      var input ='';
+      var output ='';
+    }else if(valut == "="){
+      var userInput = input;
+      userInput = input.replaceAll("x", "*");
+      Parser p = Parser();
+      Expression expression = p.parse(userInput);
+      ContextModel cm = ContextModel();
+      var finalvalue = expression.evaluate(EvaluationType.REAL,cm);
+      output = finalvalue;
+      print(finalvalue);
+    }else {
+    input = input + valut ;
+    }
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +56,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Text(input,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 48,
                     ),
@@ -39,7 +66,7 @@ class _HomeState extends State<Home> {
                   ),
                   Text(output,
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
+                      color: Colors.black.withOpacity(0.8),
                       fontWeight: FontWeight.bold,
                       fontSize: 34,
                     ),
@@ -96,7 +123,34 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+
+  Widget Button ({text,textColor = Colors.black,backgroundColor = button,}) {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+            primary: backgroundColor,
+            padding: EdgeInsets.all(22.0),
+          ),
+          onPressed: () => onButtonClick(text),
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+            ),
+          ),
+        ),      ),
+    );
+  }
 }
+
 
 
 
