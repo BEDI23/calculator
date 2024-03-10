@@ -18,24 +18,39 @@ class _HomeState extends State<Home> {
   var input ='';
   var output ='';
   var operation ='';
+  var hideinput = false;
+  var outputSize = 34.0;
 
-  onButtonClick(valut){
-    print(valut);
-    if(valut== "AC"){
-      var input ='';
-      var output ='';
-    }else if(valut == "="){
-      var userInput = input;
-      userInput = input.replaceAll("x", "*");
-      Parser p = Parser();
-      Expression expression = p.parse(userInput);
-      ContextModel cm = ContextModel();
-      var finalvalue = expression.evaluate(EvaluationType.REAL,cm);
-      output = finalvalue;
-      print(finalvalue);
-    }else {
-    input = input + valut ;
+  void onButtonClick(String value) {
+    print(value);
+
+    switch (value) {
+      case "AC":
+        input = '';
+        output = '';
+        hideinput = false;
+        outputSize = 22;
+        break;
+      case "=":
+        if (input.isNotEmpty) {
+          final userInput = input.replaceAll("x", "*");
+          try {
+            final expression = Parser().parse(userInput);
+            final result = expression.evaluate(EvaluationType.REAL, ContextModel());
+            output = result.toString().replaceAll(".o", "");
+            input = output;
+            hideinput = true;
+            outputSize = 52;
+          } catch (error) {
+            output = "Erreur";
+          }
+        }
+        break;
+      default:
+        input += value;
+        break;
     }
+
     setState(() {});
   }
 
@@ -54,7 +69,8 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(input,
+                  Text(
+                    hideinput ? '' : input,
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -68,7 +84,7 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       color: Colors.black.withOpacity(0.8),
                       fontWeight: FontWeight.bold,
-                      fontSize: 34,
+                      fontSize: outputSize,
                     ),
                   ),
               ],
